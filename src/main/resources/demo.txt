@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <properties>
+<!--        <property name="LOG_HOME">D:/logs</property>-->
+    </properties>
+
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss.SSS}] %t %-5level %l - %msg%n" />
+        </Console>
+
+        <RabbitmqAppender name="rabbitmq" host="192.168.1.156" port = "5672" username="admin" password="admin"
+            virtualHost="/" exchange="topic_exchange" queue="topic-log" type="fanout" durable="true">
+        </RabbitmqAppender>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="rabbitmq" />
+        </Root>
+
+    </Loggers>
+</Configuration>
